@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="DeAnna's Organics — a pay-what-you-can neighborhood farm in Bishopville, South Carolina. Regenerative agriculture for community food security." />
+  <title>DeAnna's Organics — Bishopville, SC</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=Nunito:wght@300;400;600&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bark:      #3B2A1A;   /* deep warm brown — text */
+      --fern:      #4A7C59;   /* forest green — primary */
+      --leaf:      #6DAA72;   /* mid green — accent */
+      --cream:     #FBF5E6;   /* warm cream — background */
+      --linen:     #F0E6CF;   /* slightly deeper — sections */
+      --wheat:     #E8D5A3;   /* warm gold — cards */
+      --terra:     #A0522D;   /* terracotta — highlight */
+      --sky:       #B8D4C8;   /* soft sage-blue */
+      --white:     #FFFDF7;
+      --display: 'Lora', Georgia, serif;
+      --body:    'Nunito', system-ui, sans-serif;
+      --max: 920px;
+      --radius: 6px;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { background: var(--cream); color: var(--bark); font-family: var(--body); font-size: 17px; line-height: 1.75; }
+
+    /* SKIP */
+    .skip { position: absolute; left: -999px; top: auto; background: var(--fern); color: var(--white); padding: 8px 16px; }
+    .skip:focus { left: 12px; top: 12px; z-index: 999; }
+
+    /* NAV */
+    nav { position: sticky; top: 0; z-index: 100; background: var(--bark); display: flex; align-items: center; justify-content: space-between; padding: 0 clamp(16px, 5vw, 48px); height: 64px; }
+    .nav-brand { font-family: var(--display); font-size: 1.15rem; color: var(--cream); text-decoration: none; letter-spacing: 0.01em; }
+    .nav-brand span { color: var(--leaf); }
+    .nav-tagline { font-size: 0.7rem; color: var(--sky); display: block; letter-spacing: 0.12em; text-transform: uppercase; margin-top: 1px; }
+    .nav-links { display: flex; gap: 24px; list-style: none; }
+    .nav-links a { color: var(--wheat); text-decoration: none; font-size: 0.85rem; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; transition: color 0.2s; }
+    .nav-links a:hover { color: var(--leaf); }
+    .hamburger { display: none; flex-direction: column; gap: 5px; background: none; border: none; cursor: pointer; padding: 4px; }
+    .hamburger span { display: block; width: 22px; height: 2px; background: var(--cream); border-radius: 2px; }
+
+    /* HERO */
+    .hero { min-height: 90vh; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: clamp(48px, 8vw, 96px) clamp(20px, 5vw, 48px); background: var(--bark); position: relative; overflow: hidden; }
+    .hero-leaves { position: absolute; inset: 0; pointer-events: none; opacity: 0.06; }
+    .hero-leaves svg { width: 100%; height: 100%; }
+    .hero-eyebrow { display: inline-flex; align-items: center; gap: 10px; font-size: 0.78rem; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: var(--leaf); margin-bottom: 24px; animation: rise 0.9s ease both; }
+    .hero-eyebrow::before, .hero-eyebrow::after { content: ''; display: block; width: 32px; height: 1px; background: var(--leaf); }
+    .hero h1 { font-family: var(--display); font-size: clamp(2.6rem, 6.5vw, 5rem); color: var(--cream); line-height: 1.15; max-width: 720px; animation: rise 0.9s 0.1s ease both; }
+    .hero h1 em { font-style: italic; color: var(--leaf); }
+    .hero-sub { margin-top: 22px; font-size: clamp(1rem, 2.2vw, 1.15rem); color: var(--sky); max-width: 540px; font-weight: 300; animation: rise 1s 0.2s ease both; }
+    .hero-pill { margin-top: 36px; display: inline-block; background: var(--fern); color: var(--white); padding: 11px 26px; font-size: 0.88rem; font-weight: 600; border-radius: 100px; animation: rise 1s 0.3s ease both; }
+    .hero-quote { margin-top: 56px; max-width: 560px; color: var(--wheat); font-style: italic; font-size: 0.97rem; line-height: 1.65; opacity: 0.8; animation: rise 1s 0.4s ease both; }
+    .hero-quote cite { display: block; font-style: normal; font-size: 0.75rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--leaf); margin-top: 10px; }
+    @keyframes rise { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+
+    /* SECTION */
+    section { padding: clamp(56px, 8vw, 100px) clamp(20px, 5vw, 48px); }
+    .inner { max-width: var(--max); margin: 0 auto; }
+    .eyebrow { font-size: 0.72rem; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; color: var(--terra); margin-bottom: 10px; }
+    h2 { font-family: var(--display); font-size: clamp(1.9rem, 4vw, 2.9rem); color: var(--bark); line-height: 1.2; margin-bottom: 18px; }
+    h3 { font-family: var(--display); font-size: 1.2rem; margin-bottom: 8px; color: var(--fern); }
+    p { margin-bottom: 1em; }
+    p:last-child { margin-bottom: 0; }
+
+    /* MISSION */
+    #mission { background: var(--white); }
+    .mission-intro { max-width: 640px; font-size: 1.05rem; color: #4a3d2e; }
+    .mission-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 40px; }
+    .mcard { background: var(--linen); border-top: 3px solid var(--fern); padding: 24px; border-radius: var(--radius); }
+    .mcard h3 { font-size: 1rem; margin-bottom: 10px; }
+    .mcard ul { list-style: none; padding: 0; }
+    .mcard li { padding: 4px 0 4px 20px; position: relative; font-size: 0.94rem; color: #4a3d2e; }
+    .mcard li::before { content: '✦'; position: absolute; left: 0; color: var(--leaf); font-size: 0.6rem; top: 8px; }
+
+    /* PHOTO STRIP */
+    .photo-strip { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-top: 44px; }
+    .photo-ph { aspect-ratio: 4/3; background: var(--wheat); border-radius: var(--radius); display: flex; flex-direction: column; align-items: center; justify-content: center; color: var(--terra); font-size: 0.78rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; gap: 10px; border: 2px dashed var(--terra); opacity: 0.7; }
+
+    /* PROCESS */
+    #process { background: var(--linen); }
+    .process-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 40px; }
+    .step { background: var(--white); border-radius: var(--radius); padding: 28px 28px 24px; position: relative; border-bottom: 3px solid var(--leaf); }
+    .step-num { font-family: var(--display); font-size: 4rem; line-height: 1; color: var(--wheat); position: absolute; top: 12px; right: 18px; user-select: none; }
+    .step h3 { font-size: 1.05rem; }
+    .step p { font-size: 0.92rem; color: #5a4a35; }
+    .process-note { margin-top: 32px; background: var(--fern); color: var(--white); border-radius: var(--radius); padding: 22px 28px; font-size: 0.94rem; }
+    .process-note a { color: var(--sky); }
+
+    /* PRINCIPLES */
+    #principles { background: var(--bark); color: var(--cream); }
+    #principles h2 { color: var(--cream); }
+    #principles .eyebrow { color: var(--leaf); }
+    .prin-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; margin-top: 36px; }
+    .prin { border: 1px solid rgba(255,255,255,0.1); border-radius: var(--radius); padding: 22px; background: rgba(255,255,255,0.04); }
+    .prin h3 { color: var(--leaf); font-size: 0.98rem; margin-bottom: 6px; }
+    .prin p { font-size: 0.9rem; color: var(--wheat); opacity: 0.85; }
+    .bahai-block { background: var(--sky); border-radius: var(--radius); padding: 36px 40px; margin-top: 40px; max-width: 700px; margin-left: auto; margin-right: auto; text-align: center; }
+    .bahai-block blockquote { font-family: var(--display); font-style: italic; font-size: clamp(1rem, 2.2vw, 1.15rem); color: var(--bark); line-height: 1.65; }
+    .bahai-block cite { display: block; font-style: normal; font-size: 0.76rem; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; color: var(--fern); margin-top: 14px; }
+    .abdu-quote { margin-top: 24px; text-align: center; font-size: 0.88rem; color: var(--wheat); opacity: 0.65; }
+    .abdu-quote a { color: var(--leaf); }
+
+    /* IN MEMORIAM */
+    #memoriam { background: var(--cream); }
+    .mem-header { text-align: center; margin-bottom: 48px; }
+    .dragonfly { font-size: 3.5rem; display: block; margin-bottom: 12px; }
+    .mem-header h2 { font-size: clamp(2rem, 5vw, 3.2rem); }
+    .mem-header .dates { font-family: var(--display); font-style: italic; color: var(--terra); font-size: 1.1rem; margin-top: 6px; }
+    .mem-header .guiding { font-size: 1rem; color: #6a5540; margin-top: 12px; font-style: italic; }
+    .dedication-intro { background: var(--linen); border-left: 4px solid var(--fern); border-radius: 0 var(--radius) var(--radius) 0; padding: 28px 32px; margin-bottom: 40px; font-size: 1rem; color: #4a3a28; line-height: 1.8; }
+    .mem-chapters { display: flex; flex-direction: column; gap: 32px; }
+    .chapter { background: var(--white); border-radius: var(--radius); padding: 28px 32px; border-top: 2px solid var(--wheat); }
+    .chapter h3 { font-family: var(--display); font-size: 1.15rem; color: var(--terra); margin-bottom: 12px; font-style: italic; }
+    .chapter p { font-size: 0.96rem; color: #4a3a28; line-height: 1.8; }
+    .epilogue { background: var(--fern); color: var(--white); border-radius: var(--radius); padding: 32px 36px; margin-top: 12px; }
+    .epilogue h3 { color: var(--cream); font-style: italic; font-size: 1.15rem; margin-bottom: 14px; }
+    .epilogue p { font-size: 0.96rem; opacity: 0.92; line-height: 1.8; }
+    .bahai-prayer { background: var(--linen); border-radius: var(--radius); padding: 32px 36px; margin-top: 32px; text-align: center; }
+    .bahai-prayer p { font-style: italic; color: #5a4030; font-size: 0.95rem; line-height: 1.85; margin-bottom: 16px; }
+    .bahai-prayer .prayer-attr { font-style: normal; font-size: 0.8rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--fern); }
+    .abha-quote { margin-top: 24px; text-align: center; font-style: italic; color: #6a5540; font-size: 0.9rem; }
+
+    /* CONTACT */
+    #contact { background: var(--fern); color: var(--white); }
+    #contact h2 { color: var(--white); }
+    #contact .eyebrow { color: var(--sky); }
+    .contact-wrap { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; margin-top: 36px; align-items: start; }
+    .cinfo p { font-size: 0.95rem; opacity: 0.9; }
+    .cinfo a { color: var(--sky); text-decoration: none; font-weight: 600; }
+    .cinfo a:hover { text-decoration: underline; }
+    .cdetail { margin-top: 22px; display: flex; flex-direction: column; gap: 12px; }
+    .crow { display: flex; gap: 14px; align-items: flex-start; font-size: 0.93rem; }
+    .clabel { font-size: 0.7rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--sky); min-width: 60px; padding-top: 3px; }
+    .pbox { background: rgba(255,255,255,0.1); border-radius: var(--radius); padding: 22px 24px; }
+    .pbox h3 { color: var(--cream); font-size: 0.98rem; margin-bottom: 10px; }
+    .pbox p { font-size: 0.9rem; opacity: 0.85; }
+
+    /* FOOTER */
+    footer { background: var(--bark); color: var(--wheat); text-align: center; padding: 32px 20px; font-size: 0.82rem; }
+    footer a { color: var(--leaf); text-decoration: none; }
+
+    /* REVEAL */
+    .reveal { opacity: 0; transform: translateY(22px); transition: opacity 0.65s ease, transform 0.65s ease; }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+
+    /* RESPONSIVE */
+    @media (max-width: 680px) {
+      .mission-grid, .process-grid, .prin-grid, .contact-wrap { grid-template-columns: 1fr; }
+      .photo-strip { grid-template-columns: 1fr 1fr; }
+      .nav-links { display: none; flex-direction: column; gap: 0; position: absolute; top: 64px; left: 0; right: 0; background: var(--bark); padding: 12px 0; }
+      .nav-links.open { display: flex; }
+      .nav-links li a { display: block; padding: 12px 24px; }
+      .hamburger { display: flex; }
+      .bahai-block { padding: 24px 20px; }
+      .chapter, .epilogue, .bahai-prayer { padding: 22px 20px; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, .reveal { transition: none !important; animation: none !important; }
+      .reveal { opacity: 1; transform: none; }
+    }
+  </style>
+</head>
+<body>
+
+<a href="#mission" class="skip">Skip to main content</a>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-brand">
+    DeAnna's <span>Organics</span>
+    <span class="nav-tagline">Hope · Change · Love</span>
+  </a>
+  <button class="hamburger" aria-label="Toggle menu" aria-expanded="false" id="hamburger">
+    <span></span><span></span><span></span>
+  </button>
+  <ul class="nav-links" id="nav-links">
+    <li><a href="#mission">Mission</a></li>
+    <li><a href="#process">The Process</a></li>
+    <li><a href="#principles">Principles</a></li>
+    <li><a href="#memoriam">In Memoriam</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<header class="hero">
+  <div class="hero-leaves" aria-hidden="true">
+    <svg viewBox="0 0 1200 800" preserveAspectRatio="xMidYMid slice" fill="none">
+      <ellipse cx="200" cy="200" rx="120" ry="60" stroke="#6DAA72" stroke-width="1.5" transform="rotate(-30 200 200)"/>
+      <ellipse cx="900" cy="150" rx="100" ry="50" stroke="#6DAA72" stroke-width="1.5" transform="rotate(20 900 150)"/>
+      <ellipse cx="1100" cy="600" rx="130" ry="55" stroke="#6DAA72" stroke-width="1.5" transform="rotate(-15 1100 600)"/>
+      <ellipse cx="100" cy="650" rx="90" ry="45" stroke="#6DAA72" stroke-width="1.5" transform="rotate(25 100 650)"/>
+      <path d="M200 200 Q350 300 500 250 T800 300" stroke="#6DAA72" stroke-width="1"/>
+      <path d="M900 150 Q1000 400 950 600" stroke="#6DAA72" stroke-width="1"/>
+    </svg>
+  </div>
+  <p class="hero-eyebrow">🪲 Bishopville, South Carolina</p>
+  <h1>A neighborhood farm<br><em>rooted in community</em></h1>
+  <p class="hero-sub">Pay-what-you-can produce grown with regenerative, no-till, chemical-free practices — for every member of the community, regardless of ability to pay.</p>
+  <span class="hero-pill">Proudly supporting CareSouth Carolina Food Bank</span>
+  <p class="hero-quote">
+    "The ultimate goal of farming is not the growing of crops, but the cultivation and perfection of human beings."
+    <cite>— Masanobu Fukuoka</cite>
+  </p>
+</header>
+
+<!-- MISSION -->
+<section id="mission">
+  <div class="inner">
+    <p class="eyebrow reveal">Who We Are</p>
+    <h2 class="reveal">More than just organic farming</h2>
+    <p class="mission-intro reveal">DeAnna's Organics is a neighborhood farm in Bishopville, South Carolina dedicated to food security, ecological balance, and community nourishment. We grow nutritious food using ecologically regenerative agricultural practices — and we make it available to everyone.</p>
+    <div class="mission-grid">
+      <div class="mcard reveal">
+        <h3>Food Security</h3>
+        <ul>
+          <li>Pay-what-you-can access to fresh produce</li>
+          <li>Generous crop donations to food banks</li>
+          <li>Food availability for all community members</li>
+        </ul>
+      </div>
+      <div class="mcard reveal">
+        <h3>Clean Growing</h3>
+        <ul>
+          <li>No toxic herbicides or pesticides</li>
+          <li>No animal manure</li>
+          <li>Verified non-GMO, organically grown seeds</li>
+          <li>Botanical and biological pest control only</li>
+        </ul>
+      </div>
+      <div class="mcard reveal">
+        <h3>Regenerative Practice</h3>
+        <ul>
+          <li>Low-tillage soil preservation</li>
+          <li>Crop residue recycling</li>
+          <li>Cover crop soil building</li>
+          <li>Soil biology protection</li>
+        </ul>
+      </div>
+      <div class="mcard reveal">
+        <h3>Ecological Balance</h3>
+        <ul>
+          <li>Promoting biodiversity on every plot</li>
+          <li>Pollinator habitat through companion planting</li>
+          <li>Preserving the ecological balance of the land</li>
+        </ul>
+      </div>
+    </div>
+    <div class="photo-strip reveal">
+      <div class="photo-ph">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+        Farm Photo
+      </div>
+      <div class="photo-ph">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+        Crops &amp; Soil
+      </div>
+      <div class="photo-ph">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+        Community
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section id="process">
+  <div class="inner">
+    <p class="eyebrow reveal">How We Farm</p>
+    <h2 class="reveal">Four steps in regenerative agriculture</h2>
+    <p class="reveal" style="max-width:620px; color:#5a4a35">Every growing season starts from the ground up — literally. Healthy soil is the foundation of nutritious food and a resilient local food system.</p>
+    <div class="process-grid">
+      <div class="step reveal">
+        <span class="step-num" aria-hidden="true">1</span>
+        <h3>Soil Analysis</h3>
+        <p>Sample soil for chemical and physical characteristics. Identify mineral balances and optimize for the specific crops that will thrive in that ground. We send samples to Logan Labs and consult mineral balance methodology from Dr. William Albrecht and Dr. Carey Reams.</p>
+      </div>
+      <div class="step reveal">
+        <span class="step-num" aria-hidden="true">2</span>
+        <h3>Soil Preparation</h3>
+        <p>Amend with minerals determined from analysis. Add alfalfa pellets for season-long nitrogen. Water and allow minerals and soil biology to reach equilibrium before planting begins.</p>
+      </div>
+      <div class="step reveal">
+        <span class="step-num" aria-hidden="true">3</span>
+        <h3>Cover Crops</h3>
+        <p>Seed with a diverse warm- or cool-season cover crop blend. Legumes mine deep minerals and fix nitrogen; grasses add organic matter; brassicas provide natural pest suppression through allelopathic biochemistry.</p>
+      </div>
+      <div class="step reveal">
+        <span class="step-num" aria-hidden="true">4</span>
+        <h3>Chop &amp; Drop</h3>
+        <p>At the flowering stage, cover crops are chopped fine and shallow-tilled into the top inch of soil. The soil biology decomposes the residue and makes carbon and nutrients available for the next planting — no external compost required.</p>
+      </div>
+    </div>
+    <div class="process-note reveal">
+      <strong>After harvest:</strong> crop residue is returned to the soil the same way. At season's end, cover crops are replanted to protect and nourish the soil through winter — and the cycle begins again. For resources, references, and supplier links, <a href="mailto:ken@deannasorganics.com">reach out directly</a>.
+    </div>
+  </div>
+</section>
+
+<!-- PRINCIPLES -->
+<section id="principles">
+  <div class="inner">
+    <p class="eyebrow reveal">The Foundation</p>
+    <h2 class="reveal">Why healthy soil changes everything</h2>
+    <div class="prin-grid">
+      <div class="prin reveal">
+        <h3>Microbial Community</h3>
+        <p>Healthy soil acts as the plant's digestive system. Microbes in the rhizosphere digest insoluble minerals and make organic compounds available for uptake — far more efficiently than ionic solutions alone.</p>
+      </div>
+      <div class="prin reveal">
+        <h3>Balanced Nutrition</h3>
+        <p>Plants require a full spectrum of minerals and trace elements as enzyme cofactors to build immunity. Deficiencies in any key mineral cascade into weaker plants, weaker food, and weaker people.</p>
+      </div>
+      <div class="prin reveal">
+        <h3>Soil Tilth</h3>
+        <p>Good aggregation and crumb formation allow proper water infiltration, air movement, and root development. No-till preserves this structure that conventional tillage destroys season after season.</p>
+      </div>
+      <div class="prin reveal">
+        <h3>Plant Immunity</h3>
+        <p>As soil health improves, plants develop genuine resistance to fungal pathogens, sucking insects, and airborne diseases — without chemical intervention. This is the goal: food that defends itself.</p>
+      </div>
+    </div>
+    <div class="bahai-block reveal">
+      <blockquote>
+        "Burden not an animal with more than it can bear. We, truly, have prohibited such treatment through a most binding interdiction in the Book. Be ye the embodiments of justice and fairness amidst all creation."
+      </blockquote>
+      <cite>— Bahá'u'lláh</cite>
+    </div>
+    <p class="abdu-quote reveal">
+      "The fundamental basis of the community is agriculture, tillage of the soil." — 'Abdu'l-Bahá &nbsp;·&nbsp;
+      <a href="https://www.bahai.org" target="_blank" rel="noopener">Learn about the Bahá'í Faith</a>
+    </p>
+  </div>
+</section>
+
+<!-- IN MEMORIAM -->
+<section id="memoriam">
+  <div class="inner">
+    <div class="mem-header reveal">
+      <span class="dragonfly" aria-hidden="true">🪲</span>
+      <p class="eyebrow" style="text-align:center">In Memoriam</p>
+      <h2>DeAnna</h2>
+      <p class="dates">1974 – 2015</p>
+      <p class="guiding">Your light guides every seed we plant and every life we touch.</p>
+    </div>
+
+    <div class="dedication-intro reveal">
+      This dedication is a testament to the remarkable spirit of DeAnna — her laughter, her curiosity, her courage, and her compassion. Within these pages you will travel from the bright spring morning of her birth through the milestones of childhood, adolescence, and young adulthood, and into the legacy she inspires today. May her story remind us all of the beauty of a single life lived fully.
+    </div>
+
+    <div class="mem-chapters">
+      <div class="chapter reveal">
+        <h3>The Day She Was Born</h3>
+        <p>On a warm spring morning in National City, California — May 28, 1974 — our lives shifted forever. The breeze off the bay carried the scent of flowering jacaranda trees as we made our way to the hospital. Inside, sunlight filtered through pale green curtains, and with DeAnna's first breathtaking cry — strong and clear — our daughter arrived. Light hair damp against her brow, she opened her eyes wide as if seeing the world for the very first time. Holding her, I was overwhelmed by the miracle of her tiny fingers curling around mine and by the smile that flickered on her lips, as though she already knew she was loved beyond measure.</p>
+      </div>
+
+      <div class="chapter reveal">
+        <h3>The Bunny on the Stairs</h3>
+        <p>That October evening, DeAnna — barely three — dressed as a bunny princess, surveyed the neighborhood from the top porch step. Through my vintage Brownie camera's viewfinder, I watched her shuffle forward, clutching her pumpkin basket. In an instant she tumbled down the stairs in a cascade of floppy ears and cotton tail. I hesitated, still filming, until my wife's sharp voice broke through: "Stop the camera! Help her!" Rushing to her side, I found her dusting off a leaf, tears vanishing into a triumphant grin. A few days later, we labored over her pronunciation of "girl," celebrating her first clear "giiiiirl!" that echoed her indomitable spirit.</p>
+      </div>
+
+      <div class="chapter reveal">
+        <h3>Becoming Big Sister</h3>
+        <p>In April 1977, when DeAnna was three, her brother Brian arrived. Initially fascinated, she soon felt the pangs of shared attention. One afternoon, "helping" meant pushing Brian's buggy around the house until she couldn't find it. When asked, she pointed to a closed spare bedroom — "out of sight, out of mind." Laughing together as we found him safe in his crib, we taught her that babies need arms, voices, and time. She listened, then threw her arms around Brian, declaring, "I'll keep you safe, baby brother."</p>
+      </div>
+
+      <div class="chapter reveal">
+        <h3>Summer Evenings at the Park</h3>
+        <p>From 1983 to 1988, after work and classes, we drove to our local park at dusk. DeAnna and Brian played on swings and monkey bars while I — college textbooks in my lap — studied by dashboard light. One evening I called them to leave, started the car, and saw DeAnna outside the locked passenger door, terrified by the engine's roar. I let her in, and she glared, cross-armed, then growled in mock revenge, "I will pay for that." Laughter followed, and she whispered, "Okay… but next time, warn me!"</p>
+      </div>
+
+      <div class="chapter reveal">
+        <h3>The Bogey Bunny</h3>
+        <p>For her birthday, I presented DeAnna a three-foot fluffy bunny named Mr. Hops. She hugged it fiercely and placed it in her room's corner — until, at night, it looked like the bogeyman hiding in the dark. Troubled, she asked me to remove it. I tucked Mr. Hops behind the couch, and her relief was instant. Later, we repurposed him to Brian's room, where DeAnna would pat him kindly: "Good job guarding Brian."</p>
+      </div>
+
+      <div class="chapter reveal">
+        <h3>The Shaving Cream Revolt</h3>
+        <p>On the last day of middle school, a few classmates smuggled shaving-cream cans onto the bus. What began as harmless squirts escalated to a white-foam battlefield. DeAnna, shrieking then laughing, smeared a friend's cheek before the driver quelled the chaos. By the time she climbed off at home, she was stiff with dried suds but glowing with delight. After a warm bath, she declared, "Best. Day. Ever."</p>
+      </div>
+
+      <div class="chapter reveal">
+        <h3>Friday Night Tag Football</h3>
+        <p>In high school, DeAnna joined the coed tag-football league. With "sticky fingers," she darted through drills, snagging flags with lightning reflexes. Family ritual became cheering from bleachers under floodlights, hot chocolate in hand. In the championship game, she intercepted a pass at the ten-yard line and sprinted into the end zone for the winning touchdown. Her teammates hoisted her on their shoulders; I watched with tears — for her victory and for the fearless, joyful leader she had become.</p>
+      </div>
+
+      <div class="chapter reveal">
+        <h3>A New Beginning in Lowell</h3>
+        <p>In 1989, at fifteen, DeAnna moved from Wheeling, Illinois, to Lowell, Indiana. She navigated a new high school with determination — joining robotics, art electives, and the school paper. Unpacking her lavender-painted room, she hosted her first Lowell friend, Marisol, for sketching sessions. By autumn, hallways felt familiar, strangers had become friends, and DeAnna's curiosity and creativity anchored her in this new chapter.</p>
+      </div>
+
+      <div class="chapter reveal">
+        <h3>Purdue Extension in Merrillville</h3>
+        <p>In 1995, DeAnna and her mother enrolled at Purdue University North Central in Merrillville. In small lecture halls, she thrived. Evenings brought home-cooked meals, study sessions, and occasional ice-cream runs. By year's end, DeAnna's confidence, empathy, and writer's voice had deepened in this intimate academic community.</p>
+      </div>
+
+      <div class="chapter reveal">
+        <h3>New Beginnings and Hidden Battles</h3>
+        <p>In 1996, our family relocated to Sacramento. DeAnna, twenty-two, worked as a baker's assistant at WinCo. Developing epileptic seizures shook her world; concentration at American River College became a struggle. Undeterred, she adapted her study habits — recording lectures, color-coding assignments, and sketching neural pathways. In 2005 she married a coworker; their five-year marriage, full of joys and challenges, ended amicably around 2010. That same year, she found new purpose catering at a local casino, balancing trays of quiches and chocolate-dipped strawberries with grace.</p>
+      </div>
+
+      <div class="chapter reveal">
+        <h3>A Life Remembered</h3>
+        <p>On April 27, 2015, following many silent struggles, DeAnna passed from this world. Her funeral at Davis Arboretum Cemetery in Davis, California, was held under a clear spring sky. Over a hundred friends, family, and coworkers gathered for a brief Bahá'í memorial. They spoke of her fierce laughter, her boundless generosity, and the warmth she shared with everyone she met. Beneath an oak's sturdy branches, we laid her to rest — and felt her spirit take wing to the Abhá Kingdom of the All-Glorious.</p>
+      </div>
+
+      <div class="epilogue reveal">
+        <h3>Epilogue: DeAnna's Organics</h3>
+        <p>In 2019, to honor her memory, we founded DeAnna's Organics on 2½ sun-warmed acres in Bishopville, South Carolina. Growing over a dozen vegetable varieties, the farm donates 90% of its crops to local food banks and families in need. Every harvest carries forward DeAnna's compassion — feeding bodies and uplifting hearts. In rows of tomatoes and tender beans, her light endures, rooted deep in the soil and blossoming in the smiles of all who share in her legacy.</p>
+      </div>
+
+      <div class="bahai-prayer reveal">
+        <p>O Lord, O Thou Whose mercy hath encompassed all, Whose forgiveness is transcendent, Whose bounty is sublime, Whose pardon and generosity are all-embracing, and the lights of Whose forgiveness are diffused throughout the world! O Lord of Glory! I entreat Thee, fervently and tearfully, to cast upon Thy handmaiden who hath ascended unto Thee the glances of the eye of Thy mercy. Robe her in the mantle of Thy grace, bright with the ornaments of the celestial Paradise, and, sheltering her beneath the tree of Thy oneness, illumine her face with the lights of Thy mercy and compassion.</p>
+        <p>Bestow upon Thy heavenly handmaiden, O God, the holy fragrances born of the spirit of Thy forgiveness. Cause her to dwell in a blissful abode, heal her griefs with the balm of Thy reunion, and, in accordance with Thy will, grant her admission to Thy holy Paradise. Let the angels of Thy loving-kindness descend successively upon her, and shelter her beneath Thy blessed Tree. Thou art, verily, the Ever-Forgiving, the Most Generous, the All-Bountiful.</p>
+        <p class="prayer-attr">— 'Abdu'l-Bahá</p>
+      </div>
+
+      <p class="abha-quote reveal">"The progress of the human spirit in the divine world, after its connection with the physical body has been severed, is either purely through the grace and bounty of the Lord, or through the intercession and prayers of other human souls, or through the significant contributions and charitable deeds which are offered in its name."</p>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="inner">
+    <p class="eyebrow reveal">Get Involved</p>
+    <h2 class="reveal">We'd love to hear from you</h2>
+    <div class="contact-wrap">
+      <div class="cinfo reveal">
+        <p>Whether you're a community member looking for fresh produce, a potential sponsor, or someone who shares our mission — reach out. Every conversation matters.</p>
+        <div class="cdetail">
+          <div class="crow">
+            <span class="clabel">Email</span>
+            <a href="mailto:ken@deannasorganics.com">ken@deannasorganics.com</a>
+          </div>
+          <div class="crow">
+            <span class="clabel">Phone</span>
+            <span>1 (480) 815-9877</span>
+          </div>
+          <div class="crow">
+            <span class="clabel">Location</span>
+            <span>Bishopville, South Carolina</span>
+          </div>
+        </div>
+      </div>
+      <div class="reveal">
+        <div class="pbox">
+          <h3>🌽 Sponsor Our Mission</h3>
+          <p>Interested in providing support, funding, or in-kind resources? Have ideas that align with our goals? We're always open to partnerships that serve the community and the land.</p>
+        </div>
+        <div class="pbox" style="margin-top:16px">
+          <h3>🥬 CareSouth Carolina Food Bank</h3>
+          <p>A portion of every harvest is donated to support neighbors in need. Together we're building a more food-secure Bishopville.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>© 2026 DeAnna's Organics · Bishopville, South Carolina · All Rights Reserved.</p>
+  <p style="margin-top:6px"><a href="mailto:ken@deannasorganics.com">ken@deannasorganics.com</a></p>
+</footer>
+
+<script>
+  const btn = document.getElementById('hamburger');
+  const links = document.getElementById('nav-links');
+  btn.addEventListener('click', () => {
+    const open = links.classList.toggle('open');
+    btn.setAttribute('aria-expanded', open);
+  });
+  links.querySelectorAll('a').forEach(a => {
+    a.addEventListener('click', () => { links.classList.remove('open'); btn.setAttribute('aria-expanded', false); });
+  });
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
